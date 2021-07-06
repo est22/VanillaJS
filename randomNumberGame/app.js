@@ -4,15 +4,29 @@ const loginButton = document.querySelector("#login-form button");
 const greeting = document.querySelector("#greeting");
 
 const HIDDEN_CLASSNAME = "hidden"; // string만 포함된 변수는 대문자로 표기
+const USERNAME_KEY = "username";  
 
 function onLoginSubmit(event){
   event.preventDefault(); // 기본동작 실행 방지
   loginForm.classList.add(HIDDEN_CLASSNAME); // hide the form
   const username = loginInput.value; // save info
-  greeting.innerText = `Hello ${username}`; // put that name into h1, combine the variables
-  greeting.classList.remove(HIDDEN_CLASSNAME);
-
-
+  localStorage.setItem(USERNAME_KEY, username); // save Item to local storage : key - value
+  paintGreetings(username);
 }
 
-loginButton.addEventListener("submit", onLoginSubmit);
+function paintGreetings(username){
+  greeting.innerText = `Hello ${username}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
+
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if(savedUsername === null) {
+  // show the form
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+  // show the greetings
+  paintGreetings(savedUsername);
+}
