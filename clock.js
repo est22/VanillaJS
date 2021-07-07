@@ -1,14 +1,9 @@
-const clock = document.querySelector("hw#clock");
+const clock = document.querySelector("h2#clock");
 
-function sayHello() {
-    console.log("Hello");
+function getClock() {
+    const date = new Date();
+    clock.innerText=`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
 }
 
-setInterval(sayHello,5000); // 시간마다 반복하면서 실행
-setTimeout(sayHello,5000); // 시간만큼 기다렸다가 실행
-// console에 new Date(); 라고 치면 나온다.
-// date.getDay()
-// date.getFullYear()
-// date.getHours()
-// date.getMinutes()
-// date.getSeconds()
+getClock(); // 웹사이트가 실행되자마자 실행
+setInterval(getClock,1000); // 시간마다 반복하면서 실행
