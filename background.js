@@ -1,4 +1,4 @@
-const images = ["0.jpeg", "1.jpeg", "2.jpeg"];
+const images = ["0.jpg", "1.jpeg", "2.jpeg"];
 
 const chosenImage = images[Math.floor(Math.random()*quotes.length)];
 
@@ -6,4 +6,4 @@ const chosenImage = images[Math.floor(Math.random()*quotes.length)];
 const bgImage = document.createElement("img"); 
 bgImage.src = `img/${chosenImage}`;
 // image를 body 내에 추가
-document.body.appendChild(bgImage);
+document.body.appendChild(bgImage); // prepend도 가능
